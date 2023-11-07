@@ -23,7 +23,7 @@ const Login = () => {
     } catch (err) {
       let errorMessage: string = "";
 
-      switch (err.response.data.type) {
+      switch (err?.response?.data?.type) {
         case UserErrors.NO_USER_FOUND:
           errorMessage = "No user found";
           break;
