@@ -1,5 +1,8 @@
 import { useGetProducts } from "../../hooks/useGetProducts";
-import { Product } from "../../types/types";
+import { IProduct } from "../../types/types";
+import { Product } from "./product";
+
+import "./styles.css";
 
 export const ShopPage = () => {
   const { products } = useGetProducts();
@@ -7,9 +10,9 @@ export const ShopPage = () => {
     <div className="shop">
       <div className="products">
         {products !== null ? (
-          products.map((product: Product) => (
+          products.map((product: IProduct) => (
             <div key={product._id}>
-              {product.productName} {product.price}
+              <Product product={product} />
             </div>
           ))
         ) : (

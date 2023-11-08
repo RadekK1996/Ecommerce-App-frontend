@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useGetToken } from "./useGetToken";
-import { Product } from "../types/types";
+import { IProduct } from "../types/types";
 
 export const useGetProducts = () => {
-  const [products, setProducts] = useState<Product[] | null>(null);
+  const [products, setProducts] = useState<IProduct[] | null>(null);
   const { headers } = useGetToken();
 
   const fetchProducts = async () => {
