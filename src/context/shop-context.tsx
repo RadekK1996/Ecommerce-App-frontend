@@ -26,9 +26,23 @@ export const ShopContext = createContext<IShopContext>(defaultVal);
 
 export const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState<{ string: number } | {}>({});
+  const [availableMoney, setAvailableMoney] = useState<number>(0);
   const { products } = useGetProducts();
   const { headers } = useGetToken();
   const navigate = useNavigate();
+
+  const fetchAvailableMoney = async () => {
+    const userID = localStorage.getItem("userID");
+    try {
+      const res = await axios.get(
+        `http://localhost:3001/user/available-money/${userID}`,
+        { headers }
+      );
+      setAvailableMoney(res.data.availableMoney);
+    } catch (err) {
+      console.error("Error fetching available money", err);
+    }
+  };
 
   const getCartItemCount = (itemId: string): number => {
     if (itemId in cartItems) {
