@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { IProduct } from "../types/types";
 import { useGetProducts } from "../hooks/useGetProducts";
 import axios from "axios";
@@ -12,6 +12,7 @@ export interface IShopContext {
   getCartItemCount: (itemId: string) => number;
   getTotalCountAmount: () => number;
   checkout: () => void;
+  availableMoney: number;
 }
 
 const defaultVal: IShopContext = {
@@ -21,6 +22,7 @@ const defaultVal: IShopContext = {
   getCartItemCount: () => 0,
   getTotalCountAmount: () => 0,
   checkout: () => null,
+  availableMoney: 0,
 };
 export const ShopContext = createContext<IShopContext>(defaultVal);
 
@@ -99,7 +101,7 @@ export const ShopContextProvider = (props) => {
 
   useEffect(() => {
     fetchAvailableMoney();
-  });
+  }, []);
 
   const contextValue: IShopContext = {
     addToCart,
@@ -108,6 +110,7 @@ export const ShopContextProvider = (props) => {
     getCartItemCount,
     getTotalCountAmount,
     checkout,
+    availableMoney,
   };
   return (
     <ShopContext.Provider value={contextValue}>
