@@ -93,6 +93,9 @@ export const ShopContextProvider = (props) => {
       await axios.post("http://localhost:3001/product/checkout", body, {
         headers,
       });
+
+      setCartItems({});
+      fetchAvailableMoney();
       navigate("/");
     } catch (err) {
       console.log(err);
