@@ -97,6 +97,10 @@ export const ShopContextProvider = (props) => {
     }
   };
 
+  useEffect(() => {
+    fetchAvailableMoney();
+  });
+
   const contextValue: IShopContext = {
     addToCart,
     removeFromCart,
