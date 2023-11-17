@@ -55,10 +55,16 @@ export const ShopContextProvider = (props) => {
   };
 
   const addToCart = (itemId: string) => {
-    if (!cartItems[itemId]) {
-      setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
+    const product = products.find((product) => product._id === itemId);
+
+    if (product && product.stockQuantity > 0) {
+      if (!cartItems[itemId]) {
+        setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
+      } else {
+        setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+      }
     } else {
-      setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+      alert("Cannot add an unavailable product to the cart.");
     }
   };
 
