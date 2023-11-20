@@ -6,12 +6,12 @@ import { IShopContext, ShopContext } from "../context/shop-context";
 import { useCookies } from "react-cookie";
 
 export const NavBar = () => {
-  const { availableMoney } = useContext<IShopContext>(ShopContext);
+  const { availableMoney, isAuthenticated, setIsAuthenticated } =
+    useContext<IShopContext>(ShopContext);
   const [, setCookies] = useCookies(["access_token"]);
 
   const logout = () => {
-    localStorage.clear();
-    setCookies("access_token", null);
+    setIsAuthenticated(false);
   };
   return (
     <div className="navbar">
@@ -19,15 +19,20 @@ export const NavBar = () => {
         <h1>RK SHOP</h1>
       </div>
       <div className="navbar-links">
-        <Link to="/">Shop</Link>
-        <Link to="/purchased-items">Purchases</Link>
-        <Link to="/checkout">
-          <FontAwesomeIcon icon={faShoppingCart} />
-        </Link>
-        <Link to="/auth" onClick={logout}>
-          Logout
-        </Link>
-        <span>${availableMoney.toFixed(2)}</span>
+        {isAuthenticated && (
+          <>
+            <Link to="/">Shop</Link>
+            <Link to="/purchased-items">Purchases</Link>
+            <Link to="/checkout">
+              <FontAwesomeIcon icon={faShoppingCart} />
+            </Link>
+            <Link to="/auth" onClick={logout}>
+              Logout
+            </Link>
+
+            <span>${availableMoney.toFixed(2)}</span>
+          </>
+        )}
       </div>
     </div>
   );

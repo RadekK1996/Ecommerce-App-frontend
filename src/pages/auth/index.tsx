@@ -1,5 +1,5 @@
-import { Register } from "../../components/register";
-import { Login } from "../../components/login";
+import { Register } from "../../components/register/register";
+import { Login } from "../../components/login/login";
 
 export const AuthPage = () => {
   return (
