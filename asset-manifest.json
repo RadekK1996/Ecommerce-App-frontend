@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/github.io/Ecommerce-App-frontend/static/css/main.20c0c154.css",
+    "main.js": "/github.io/Ecommerce-App-frontend/static/js/main.958f4e34.js",
+    "index.html": "/github.io/Ecommerce-App-frontend/index.html",
+    "main.20c0c154.css.map": "/github.io/Ecommerce-App-frontend/static/css/main.20c0c154.css.map",
+    "main.958f4e34.js.map": "/github.io/Ecommerce-App-frontend/static/js/main.958f4e34.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.20c0c154.css",
+    "static/js/main.958f4e34.js"
+  ]
+}
